@@ -1,4 +1,4 @@
-//const userService = require('../../services/user-service');
+const userService = require('../../services/user-service');
 const hotelService = require('../../services/hotel-service');
 const priceService = require('../../services/price-service');
 const helper = require('../../services/helper');
@@ -52,13 +52,18 @@ function findHotelNearbyWithBestOffer(lat, lng, radius, date) {
     
 }
 
-/*function findHotelNearbyWithBestOfferForUser(lat, lng, radius, date, userId) {
-    // TODO implement me
-    return null;
-}*/
+function findHotelNearbyWithBestOfferForUser(lat, lng, radius, date, userId) {
+    const hotels = findHotelsNearby(lat, lng, radius)
+    if (userService.getUserSubscription(userId)){
+        let allOffers = priceService.getSpecificPrices(hotels, date, 'SPECIAL_OFFER')
+        return SortOffers(allOffers)
+    } else {
+        return findHotelNearbyWithBestOffer(lat, lng, radius, date)
+    }
+}
 
 module.exports = {
 	findHotelsNearby: findHotelsNearby,
 	findHotelNearbyWithBestOffer: findHotelNearbyWithBestOffer,
-	/*findHotelNearbyWithBestOfferForUser: findHotelNearbyWithBestOfferForUser*/
+	findHotelNearbyWithBestOfferForUser: findHotelNearbyWithBestOfferForUser
 }
