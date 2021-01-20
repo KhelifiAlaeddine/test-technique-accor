@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Card from '../components/card.vue'
+import Card from '@/components/card.vue'
 
 Vue.config.productionTip = false
 
