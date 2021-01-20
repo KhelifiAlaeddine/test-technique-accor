@@ -35,10 +35,10 @@
 import app from './helpers/app.js'
 
 export default {
-  name: 'App',
+  name: 'Card',
   data: function () {
     return {
-      result: app.findHotelNearbyWithBestOfferForUser(48.856564, 2.351711, 5000, '14/01/2021', 4)
+      result: app.findHotelNearbyWithBestOffer(48.856564, 2.351711, 5000, '13/01/2021')
     }
   }
 }

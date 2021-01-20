@@ -15,14 +15,14 @@ function findHotelsNearby(lat, lng, radius) {
     return nearbyHotels
 }
 
-function SortOffers(offers) {
+function sortOffers(offers) {
     
     offers = _.remove(offers, function(item) { 
         return item.offer !== undefined; 
     });
 
     offers.sort((a,b) => (a.offer.price - b.offer.price))
-
+    
     let cheapest = null
 
     if(offers[0].offer.price != offers[1].offer.price){
@@ -45,7 +45,7 @@ function findHotelNearbyWithBestOffer(lat, lng, radius, date) {
     if(lat && lng && radius && date){
         const hotels = findHotelsNearby(lat, lng, radius)
         let allOffers = priceService.getSpecificPrices(hotels, date, 'STANDARD')
-        return SortOffers(allOffers)
+        return sortOffers(allOffers)
     } else {
         return null
     }
@@ -56,7 +56,7 @@ function findHotelNearbyWithBestOfferForUser(lat, lng, radius, date, userId) {
     const hotels = findHotelsNearby(lat, lng, radius)
     if (userService.getUserSubscription(userId)){
         let allOffers = priceService.getSpecificPrices(hotels, date, 'SPECIAL_OFFER')
-        return SortOffers(allOffers)
+        return sortOffers(allOffers)
     } else {
         return findHotelNearbyWithBestOffer(lat, lng, radius, date)
     }
@@ -65,5 +65,6 @@ function findHotelNearbyWithBestOfferForUser(lat, lng, radius, date, userId) {
 module.exports = {
 	findHotelsNearby: findHotelsNearby,
 	findHotelNearbyWithBestOffer: findHotelNearbyWithBestOffer,
-	findHotelNearbyWithBestOfferForUser: findHotelNearbyWithBestOfferForUser
+    findHotelNearbyWithBestOfferForUser: findHotelNearbyWithBestOfferForUser,
+    sortOffers: sortOffers
 }
