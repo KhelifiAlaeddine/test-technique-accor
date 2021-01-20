@@ -80,6 +80,7 @@ p{
   max-width: 30px;
 }
 .price-offer{
+  position: relative;
   width: 100%;
   height: 50%;
   background-color: lightgray;
@@ -88,16 +89,24 @@ p{
   text-align: right;
   padding-right: 10px;
 }
+.price-offer p{
+  position: absolute;
+  right: 10px
+}
 .price-intro{
   text-transform: uppercase;
   background-color: white;
   border-radius: 15px;
   display: inline-block;
   padding: 5px;
-  margin-top: -5px
+  top: -20px;
 }
 .price-details{
+  bottom: 40px;
   color: gray
+}
+.price{
+  bottom: 20px;
 }
 .bottom-links{
   margin: 20px 0;
